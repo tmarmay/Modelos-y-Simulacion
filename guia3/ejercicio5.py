@@ -1,5 +1,11 @@
-from monte_carlo import MonteCarlo,MonteCarlo2Dim
 import math 
+import sys
+import os
+ 
+current = os.path.dirname(os.path.realpath(__file__))
+parent = os.path.dirname(current)
+sys.path.append(parent)
+from monte_carlo import MonteCarlo2Dim,MonteCarlo
 
 # b)
 def b(x: int) -> int:
