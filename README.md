@@ -11,3 +11,8 @@
 ### Practico
 
 Dentro de cada guia se va a incluir el pdf con las consignas y los codigos para la resolucion de los ejercicios.
+
+
+### Teorico 
+
+Dentro de la carpeta [teorico](/teorico/) estan los pdf con la teoria de la materia.
