@@ -2,6 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from typing import List, Callable
 
+
 def generar_intervalo(a: float, b: float) -> np.ndarray:
     """
     Genera un intervalo de numeros equiespaciados entre dos valores dados.
@@ -15,6 +16,7 @@ def generar_intervalo(a: float, b: float) -> np.ndarray:
     """
     return np.linspace(start=a, stop=b, num=50)
 
+
 def generar_imagen(f: Callable[[float], float], xs: List[float]) -> List[float]:
     """
     Genera una lista de valores de funcion para una lista de valores de entrada.
@@ -27,6 +29,7 @@ def generar_imagen(f: Callable[[float], float], xs: List[float]) -> List[float]:
     List[float]: Una lista de valores resultantes despues de aplicar 'f' a cada elemento de 'xs'.
     """
     return [f(x) for x in xs]
+
 
 def graficar(xs: List[float], ys: List[float]) -> None:
     """

@@ -1,5 +1,6 @@
-import random 
+import random
 from typing import Callable
+
 
 def MonteCarlo(g: Callable[[int], int], Nsim: int):
     """
@@ -22,7 +23,7 @@ def MonteCarlo(g: Callable[[int], int], Nsim: int):
     integral = 0
     for _ in range(Nsim):
         integral += g(random.random())
-    return integral/Nsim
+    return integral / Nsim
 
 
 def MonteCarlo2Dim(g, Nsim: int):
@@ -47,5 +48,5 @@ def MonteCarlo2Dim(g, Nsim: int):
     for _ in range(Nsim):
         x = random.random()
         y = random.random()
-        integral += g(x,y)
-    return integral/Nsim
+        integral += g(x, y)
+    return integral / Nsim
