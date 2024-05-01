@@ -1,12 +1,13 @@
-import random 
-import math 
-import time 
+import random
+import math
+import time
 
-g = lambda x, n: math.e ** (x/n)
+g = lambda x, n: math.e ** (x / n)
+
 
 def CalculoDePromedio(f, n, k):
     """
-    Calcula el promedio ponderado de una función 'f' evaluada en 'k' números aleatorios entre 1 y 10_000, 
+    Calcula el promedio ponderado de una función 'f' evaluada en 'k' números aleatorios entre 1 y 10_000,
     ponderados por un factor 'n'.
 
     Parámetros:
@@ -29,27 +30,29 @@ def CalculoDePromedio(f, n, k):
     """
     sum = 0
     for _ in range(k):
-        u = random.randrange(0,n+1)
+        u = random.randrange(0, n + 1)
         sum += f(u, n)
     prmedio = sum / k
     return prmedio * n
 
-#print(CalculoDePromedio(g, n=10_000, k=100))
+
+# print(CalculoDePromedio(g, n=10_000, k=100))
+
 
 def PruebaRendimiento(n):
     resultado = 0
     tiempo_inicio = time.time()
     for i in range(n):
-        resultado += g(i,n)
+        resultado += g(i, n)
     tiempo_final = time.time()
-    print(f'Calculo de los primeros 100 numeros en la funcion g')
-    print(f'            {resultado}, tiempo: {tiempo_final-tiempo_inicio}')
-           
+    print(f"Calculo de los primeros 100 numeros en la funcion g")
+    print(f"            {resultado}, tiempo: {tiempo_final-tiempo_inicio}")
 
     tiempo_inicio = time.time()
     resultado = CalculoDePromedio(g, n, 100)
     tiempo_final = time.time()
-    print(f'Calculo de los primeros 100 numeros en la funcion g con aproximacion')
-    print(f'           {resultado}, tiempo: {tiempo_final-tiempo_inicio}')
+    print(f"Calculo de los primeros 100 numeros en la funcion g con aproximacion")
+    print(f"           {resultado}, tiempo: {tiempo_final-tiempo_inicio}")
+
 
 PruebaRendimiento()

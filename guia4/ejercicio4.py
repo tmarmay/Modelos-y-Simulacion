@@ -1,11 +1,22 @@
 import random
 
 prob = [0.11, 0.14, 0.09, 0.08, 0.12, 0.10, 0.09, 0.07, 0.11, 0.09]
-xs = [1,2,3,4,5,6,7,8,9,10]
-urna = [11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 9, 9, 9, 9, 9, 9, 9, 9, 9, 8, 8, 8, 8, 8, 8, 8, 8, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 9, 9, 9, 9, 9, 9, 9, 9, 9, 7, 7, 7, 7, 7, 7, 7, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 9, 9, 9, 9, 9, 9, 9, 9, 9]
+xs = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+urna = [
+    11,11,11,11,11,11,11,11,11,11,
+    11,14,14,14,14,14,14,14,14,14,
+    14,14,14,14,14,9,9,9,9,9,9,9,
+    9,9,8,8,8,8,8,8,8,8,12,12,12,
+    12,12,12,12,12,12,12,12,12,10,
+    10,10,10,10,10,10,10,10,10,9,9,
+    9,9,9,9,9,9,9,7,7,7,7,7,7,7,11,
+    11,11,11,11,11,11,11,11,11,11,9,
+    9,9,9,9,9,9,9,9,
+]
+
 
 def AceptacionRechazo() -> int:
-    '''
+    """
     Implementación del método de aceptación rechazo para generar variables aleatorias.
 
     Returns:
@@ -23,17 +34,18 @@ def AceptacionRechazo() -> int:
         Para generar una variable aleatoria utilizando esta función, simplemente llámala así:
         >>> variable_aleatoria = MyR()
 
-    '''
-    #Y ~ U(1,10) => qj = 0.1
-    #0.14/0.1 <= c     
-    c , qj = 1.4, 0.1
-    Y = int( random.random() * 10 ) + 1
-    while True:
-        if random.random() < prob[Y-1] / (c * qj):
+    """
+    # Y ~ U(1,10) => qj = 0.1
+    # 0.14/0.1 <= c
+    c, qj = 1.4, 0.1
+    while True: #PREGUNTAR SI EL WHILE VA ABAJO DE ESTA LINEA O DONDE ESTA
+        Y = int(random.random() * 10) + 1
+        if random.random() < prob[Y - 1] / (c * qj):
             return Y
 
+
 def TransformadaInversa(p: list, xs: list) -> int:
-    '''
+    """
     Implementación del método de la transformada inversa para generar variables aleatorias.
 
     Args:
@@ -55,17 +67,17 @@ def TransformadaInversa(p: list, xs: list) -> int:
     Ejemplo:
         Para generar una variable aleatoria utilizando esta función, simplemente llámala así:
         >>> variable_aleatoria = TransformadaInversa([0.1, 0.5, 0.3, 0.1], [1, 2, 3, 4])
-    '''
+    """
     U = random.random()
     i, F = 0, p[0]
     while U >= F:
         i += 1
         F += p[i]
-    return xs[i] 
+    return xs[i]
 
 
 def MetodoUrna(k) -> int:
-    '''
+    """
     Implementación del método de la urna para generar variables aleatorias.
 
     Args:
@@ -85,6 +97,6 @@ def MetodoUrna(k) -> int:
     Ejemplo:
         Para generar una variable aleatoria utilizando esta función, simplemente llámala así:
         >>> variable_aleatoria = MetodoUrna(10)
-    '''
+    """
     U = random.random()
-    return urna[ int(U) * k]
+    return urna[int(U) * k]
