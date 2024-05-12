@@ -1,24 +1,52 @@
 import random
 import numpy as np
-import time 
+import time
+
 
 def SumaUniformes() -> float:
+    """
+    Genera una variable aleatoria siguiendo la suma de dos distribuciones uniformes.
+
+    Returns:
+        float: La variable aleatoria generada.
+    """
     x1 = random.random()
     x2 = random.random()
     return x1 + x2
 
+
 def TI() -> float:
-    u = 2*random.random()
-    if u < 1:
-        return np.sqrt(2*u)
+    """
+    Genera una variable aleatoria utilizando el método de Transformada Inversa.
+
+    Returns:
+        float: La variable aleatoria generada.
+    """
+    u = random.random()
+    if u < 0.5:
+        return np.sqrt(2 * u)
     else:
-        return 2 - np.sqrt(2 - 2*u)
+        return 2 - np.sqrt(2 - 2 * u)
+
 
 def AyR() -> float:
-    u = random.random() * 2
+    """
+    Genera una variable aleatoria utilizando el método de Aceptación-Rechazo.
+
+    Returns:
+        float: La variable aleatoria generada.
+    """
+    u = 2 * random.random()
     return u
 
+
 def test(*, k: int):
+    """
+    Realiza una simulación para estimar los valores esperados para diferentes variables aleatorias.
+
+    Args:
+        k (int): El número de iteraciones para la simulación.
+    """
     su, ti, ayr = 0, 0, 0
     for _ in range(k):
         su += SumaUniformes()
@@ -29,7 +57,14 @@ def test(*, k: int):
     print(f"La esperanza con {k} iteraciones es para trasnformada inversa: {ti/k}")
     print(f"La esperanza con {k} iteraciones es para rechazo: {ayr/k}")
 
+
 def test2(*, k: int):
+    """
+    Realiza una simulación para estimar las probabilidades de exceder un cierto valor para diferentes variables aleatorias.
+
+    Args:
+        k (int): El número de iteraciones para la simulación.
+    """
     su, ti, ayr = 0, 0, 0
     for _ in range(k):
         if SumaUniformes() > 1.5:
@@ -42,5 +77,10 @@ def test2(*, k: int):
     print(f"P(X > 1.5) con {k} iteraciones para suma de uniformes: {su/k}")
     print(f"P(X > 1.5) con {k} iteraciones para trasnformada inversa: {ti/k}")
     print(f"P(X > 1.5) con {k} iteraciones para rechazo: {ayr/k}")
+    """
+    Aparentemente el metodo de rechazo no funciona bien para este caso, devido a que no tiene la misma distribucion de prob.
+    Para mejor compresion hacer los calculos u < p(y) / (c * q(y)) => u < 1 => vale siempre (c = 2).
+    """
+
 
 test2(k=10_000)
